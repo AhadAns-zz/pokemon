@@ -1,5 +1,5 @@
 import { Params } from '@angular/router';
-import { IPageQuery } from 'src/app/shared/models/query/page.models';
+import { IPageQuery } from '../../models/query/page.models';
 
 /**
  * @param query
@@ -14,7 +14,7 @@ class ParamsBuilder implements Params {
   }
 
   private _withAny(data: any = {}): ParamsBuilder {
-    Object.keys(data).forEach((key) => {
+    Object.keys(data).forEach(key => {
       this[key] = data[key];
     });
     return this;

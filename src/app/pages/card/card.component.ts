@@ -1,29 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
-import { AutoUnsubscriber } from 'src/app/shared/classes/auto-unsubscriber';
-import {
-  distinctUntilChanged,
-  map,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs/operators';
-import {
-  FIRST_PAGE_INDEX,
-  IPageQuery,
-  ITEMS_PER_PAGE,
-} from 'src/app/shared/models/query/page.models';
-import { routerParamMapToParams } from 'src/app/shared/functions/router/router-param-map-to-params';
+import { AutoUnsubscriber } from '../../shared/classes/auto-unsubscriber';
+import { distinctUntilChanged, map, switchMap, take, tap } from 'rxjs/operators';
+import { FIRST_PAGE_INDEX, IPageQuery, ITEMS_PER_PAGE } from '../../shared/models/query/page.models';
+import { routerParamMapToParams } from '../../shared/functions/router/router-param-map-to-params';
 import { isEqual } from 'lodash/index';
-import {
-  ConsultationPage,
-  IConsultationPage,
-} from 'src/app/shared/models/consult/consultation-page.models';
+import { ConsultationPage, IConsultationPage } from '../../shared/models/consult/consultation-page.models';
 import { Observable } from 'rxjs';
-import { CardService } from 'src/app/pages/card/card.service';
+import { CardService } from '../../pages/card/card.service';
 import { PageEvent } from '@angular/material/paginator';
-import { asParams } from 'src/app/shared/functions/as-params/as-params';
-import { ICardDetails } from 'src/app/pages/card/pages/card-details.models';
+import { asParams } from '../../shared/functions/as-params/as-params';
+import { ICardDetails } from '../../pages/card/pages/card-details.models';
 
 export type CardQueryParamsType = IPageQuery;
 
@@ -42,9 +29,7 @@ export class CardComponent extends AutoUnsubscriber implements OnInit {
   }
 
   public page: IConsultationPage<ICardDetails> | undefined = undefined;
-  private static _parseQueryParams(
-    params: Readonly<ParamMap>
-  ): CardQueryParamsType {
+  private static _parseQueryParams(params: Readonly<ParamMap>): CardQueryParamsType {
     let offset: number = parseInt(params.get('offset'));
     let limit: number = parseInt(params.get('limit'));
 
@@ -90,15 +75,9 @@ export class CardComponent extends AutoUnsubscriber implements OnInit {
     this.registerSubscription(
       this._activatedRoute.queryParamMap
         .pipe(
-          map(
-            (params: Readonly<ParamMap>): CardQueryParamsType =>
-              CardComponent._parseQueryParams(params)
-          ),
-          distinctUntilChanged(
-            (
-              oldParams: Readonly<CardQueryParamsType>,
-              newParams: Readonly<CardQueryParamsType>
-            ): boolean => isEqual(oldParams, newParams)
+          map((params: Readonly<ParamMap>): CardQueryParamsType => CardComponent._parseQueryParams(params)),
+          distinctUntilChanged((oldParams: Readonly<CardQueryParamsType>, newParams: Readonly<CardQueryParamsType>): boolean =>
+            isEqual(oldParams, newParams)
           ),
           tap({
             next: (params: Readonly<CardQueryParamsType>): void => {
@@ -126,12 +105,7 @@ export class CardComponent extends AutoUnsubscriber implements OnInit {
            * @description
            * FYI {@link switchMap} to cancel ongoing HTTP calls when the query change
            */
-          switchMap(
-            (
-              params: Readonly<CardQueryParamsType>
-            ): Observable<IConsultationPage<ICardDetails>> =>
-              this._loadPage$(params)
-          )
+          switchMap((params: Readonly<CardQueryParamsType>): Observable<IConsultationPage<ICardDetails>> => this._loadPage$(params))
         )
         .subscribe()
     );
@@ -139,13 +113,9 @@ export class CardComponent extends AutoUnsubscriber implements OnInit {
 
   private _setPage(page: IConsultationPage<ICardDetails>): void {
     this.page = page;
-    console.log('page', this.page);
   }
 
-  private _updateUrlQueryParams(
-    queryParams: Readonly<Params>,
-    shouldReplaceUrl: Readonly<boolean> = true
-  ): Promise<boolean> {
+  private _updateUrlQueryParams(queryParams: Readonly<Params>, shouldReplaceUrl: Readonly<boolean> = true): Promise<boolean> {
     return this._router.navigate([], {
       queryParams,
       relativeTo: this._activatedRoute,
@@ -153,9 +123,7 @@ export class CardComponent extends AutoUnsubscriber implements OnInit {
     });
   }
 
-  private _loadPage$(
-    params: Readonly<CardQueryParamsType>
-  ): Observable<IConsultationPage<ICardDetails>> {
+  private _loadPage$(params: Readonly<CardQueryParamsType>): Observable<IConsultationPage<ICardDetails>> {
     return this._cardService
       .getPokemon$({
         offset: params.offset,
