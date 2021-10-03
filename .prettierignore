@@ -1,0 +1,17 @@
+.idea
+build
+dist
+node_modules
+target
+package-lock.json
+projects/*/src/assets/i18n/*.json
+.eslintcache
+.cache
+.cache-jest
+.stylelintcache
+
+projects/admin/build
+projects/library/build
+projects/one/build
+.storybook/static
+compodoc
