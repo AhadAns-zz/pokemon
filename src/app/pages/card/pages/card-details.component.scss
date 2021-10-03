@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  margin-top: 92px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 30px 57px 48px;
+  max-width: 816px;
+  margin-bottom: 48px;
+  background: aliceblue;
+  border: 1px solid #dbe0e6;
+  border-radius: 6px;
+  box-shadow: 0 0 20px 0 rgb(22 43 102 / 10%);
+
+  &__details {
+
+    &--name {
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    &--image {
+      width: 250px;
+    }
+
+    &--ability {
+      font-size: 18px;
+    }
+  }
+}

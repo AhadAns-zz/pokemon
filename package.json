@@ -1,0 +1,44 @@
+{
+  "name": "pokemon",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~10.2.4",
+    "@angular/cdk": "^10.2.7",
+    "@angular/common": "~10.2.4",
+    "@angular/compiler": "~10.2.4",
+    "@angular/core": "~10.2.4",
+    "@angular/flex-layout": "^10.0.0-beta.32",
+    "@angular/forms": "~10.2.4",
+    "@angular/material": "^10.2.7",
+    "@angular/platform-browser": "~10.2.4",
+    "@angular/platform-browser-dynamic": "~10.2.4",
+    "@angular/router": "~10.2.4",
+    "lodash-es": "4.17.20",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.0.0",
+    "zone.js": "~0.10.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.1002.3",
+    "@angular/cli": "~10.2.3",
+    "@angular/compiler-cli": "~10.2.4",
+    "@types/jest": "^27.0.2",
+    "@types/lodash-es": "4.17.4",
+    "@types/node": "^12.11.1",
+    "codelyzer": "^6.0.0",
+    "jest": "^27.2.4",
+    "jest-preset-angular": "^10.0.1",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
+    "typescript": "~4.0.2"
+  }
+}

@@ -1,0 +1,39 @@
+<div class="card">
+  <div>
+    <div class="card__details">
+      <img
+        [src]="pokemon.sprites.other['official-artwork'].front_default"
+        class="card__details--image"
+      />
+    </div>
+  </div>
+  <div>
+    <div class="card__details">
+      <span class="card__details--name">Name: {{ pokemon.name }}</span>
+    </div>
+    <br />
+
+    <div class="card__details">
+      <span class="card__details--name">Height: {{ pokemon.height }}</span>
+    </div>
+    <br />
+
+    <div class="card__details">
+      <span class="card__details--name">Weight: {{ pokemon.weight }}</span>
+    </div>
+    <br />
+
+    <div class="card__details">
+      <span class="card__details--name">Ability</span>
+      <ul
+        *ngFor="
+          let ability of pokemon.abilities;
+          let index = index;
+          trackBy: trackBy
+        "
+      >
+        <li class="card__details--ability">{{ ability.ability.name }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

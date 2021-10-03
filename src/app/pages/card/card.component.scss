@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 1em;
+  grid-column-gap: 1em;
+  padding: 15px;
+
+  &__card {
+    &--image {
+      width: 250px;
+    }
+  }
+}
+
+mat-card {
+  cursor: pointer;
+}
