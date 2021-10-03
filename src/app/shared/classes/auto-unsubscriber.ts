@@ -40,10 +40,7 @@ export abstract class AutoUnsubscriber implements OnDestroy {
   private readonly _rootSubscription: Subscription = new Subscription();
 
   public registerSubscription(...subscriptions: Subscription[]): void {
-    subscriptions.forEach(
-      (subscription: Readonly<Subscription>): Subscription =>
-        this._rootSubscription.add(subscription)
-    );
+    subscriptions.forEach((subscription: Readonly<Subscription>): Subscription => this._rootSubscription.add(subscription));
   }
 
   public ngOnDestroy(): void {

@@ -12,18 +12,12 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    loadChildren: () =>
-      import('./pages/card-details.module').then((m) => m.CardDetailsModule),
+    loadChildren: () => import('./pages/card-details.module').then(m => m.CardDetailsModule),
   },
 ];
 
 @NgModule({
   declarations: [CardComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatCardModule,
-    MatPaginatorModule,
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), MatCardModule, MatPaginatorModule],
 })
 export class CardRoutingModule {}

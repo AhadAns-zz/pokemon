@@ -7,10 +7,7 @@ const FIRST_VALUE = 0;
  * @param paramMap
  * @param key
  */
-function getParamValue(
-  paramMap: Readonly<ParamMap>,
-  key: Readonly<string>
-): string[] | string {
+function getParamValue(paramMap: Readonly<ParamMap>, key: Readonly<string>): string[] | string {
   const values: string[] = paramMap.getAll(key);
 
   if (values.length === ONE_VALUE) {
@@ -29,13 +26,10 @@ function getParamValue(
  * @returns {Params} an object containing the params
  */
 export function routerParamMapToParams(paramMap: Readonly<ParamMap>): Params {
-  return paramMap.keys.reduce(
-    (allParams: Readonly<Params>, key: Readonly<string>): Params => {
-      return {
-        ...allParams,
-        [key]: getParamValue(paramMap, key),
-      };
-    },
-    {}
-  );
+  return paramMap.keys.reduce((allParams: Readonly<Params>, key: Readonly<string>): Params => {
+    return {
+      ...allParams,
+      [key]: getParamValue(paramMap, key),
+    };
+  }, {});
 }

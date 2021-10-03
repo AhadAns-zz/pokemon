@@ -7,9 +7,7 @@ import { CardDetailsService } from 'src/app/pages/card/pages/card-details.servic
 
 @Injectable({ providedIn: 'root' })
 export class CardDetailsResolver implements Resolve<ICardDetails> {
-  public constructor(
-    private readonly _cardDetailsService: CardDetailsService
-  ) {}
+  public constructor(private readonly _cardDetailsService: CardDetailsService) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<ICardDetails> {
     const { id } = route.params;
